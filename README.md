@@ -79,20 +79,19 @@ plt.show()
 ```
 Which produces the following output:
 
-
+<img src="images/clusters1.png" alt="Description" width="1000" height="300">
 
 To generate these exercise intensity classifications/predictions, my model was tuned to include five distinct clusters using rolling average of SmO2, SmO2', SmO2'', acceleration, and jerk as inputs. I then manually labeled the clusters based on a standard five-zone intensity distribution model commonly used in endurance sports. Interestingly, the predictions matched my expectations perfectly. The dark purple sections of this athlete's muscle oxygenation trend labeled “Recovery” indeed corresponded to the momentary recovery periods between load steps during the ramp incremental exercise test. Additionally, you can see that at the start of each work bout, the athlete quickly transitions through different intensity zones before vacillating between the moderate to severe zones in varying proportions, depending on the specific load step.
 
 Additionally, using the code below I was able to create an interactive visualization, which allows me zoom into the chart, pan around, and more. By doing so, we can observe phase transitions between intensity zones on very short time scales. You can use the code below, and the data stored in the 'data' folder of this project repository to create your own interactive visualization to view this data:
-```
+```python
 fig = px.scatter(data_frame=data, x='time', y='SmO2_rolling_mean', color='Phase', color_discrete_map=cluster_labels, title='Clusters of Exercise Phases', labels={'time': 'Time', 'SmO2_rolling_mean': 'SmO2'})
 fig.update_layout(legend_title_text='Phase', coloraxis_colorbar_title='Cluster')
 fig.show()
 ```
 Which produces the following output (still image of an interactive visualization tool:
 
-
-
+<img src="images/clusters2.png" alt="Description" width="1000" height="300">
 
 To this point, it hasn’t been possible to witness the phase transitions between exercise intensity domains on such short time scales, which is a major limitations of zoning training based on physiological metrics such as heart rate and blood lactate. This highlights an advantage of using NIRS-based indicators of exercise response, like muscle oxygenation, which reflect local muscle physiological responses, compared to metrics like heart rate and lactate that are systemic indicators of exercise responses.
 
